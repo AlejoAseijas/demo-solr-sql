@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+
+  <luceneMatchVersion>9.0.0</luceneMatchVersion>
+
+  <updateHandler class="solr.DirectUpdateHandler2"/>
+
+  <requestHandler name="/select" class="solr.SearchHandler">
+    <lst name="defaults">
+      <str name="df">search_text</str>
+    </lst>
+  </requestHandler>
+
+</config>

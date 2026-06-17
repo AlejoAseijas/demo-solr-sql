@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema name="movies" version="1.6">
+
+  <uniqueKey>id</uniqueKey>
+
+  <field name="id" type="string" indexed="true" stored="true" required="true"/>
+
+  <field name="film_name" type="text_es" indexed="true" stored="true"/>
+  <field name="gender" type="string" indexed="true" stored="true"/>
+  <field name="film_avg_rate" type="pfloat" indexed="true" stored="true"/>
+  <field name="review_rate" type="pfloat" indexed="true" stored="true"/>
+  <field name="review_title" type="text_es" indexed="true" stored="true"/>
+  <field name="review_text" type="text_es" indexed="true" stored="true"/>
+
+  <fieldType name="string" class="solr.StrField"/>
+
+  <fieldType name="pfloat" class="solr.FloatPointField"/>
+
+  <fieldType name="text_es" class="solr.TextField">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+
+  <field name="search_text" type="text_es" indexed="true" stored="false" multiValued="true"/>
+
+  <copyField source="film_name" dest="search_text"/>
+  <copyField source="review_title" dest="search_text"/>
+  <copyField source="review_text" dest="search_text"/>
+
+</schema>
